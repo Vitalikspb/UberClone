@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		53332BB926C1565300F3A988 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53332BB826C1565300F3A988 /* AppDelegate.swift */; };
 		53332BBB26C1565300F3A988 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53332BBA26C1565300F3A988 /* SceneDelegate.swift */; };
-		53332BBD26C1565300F3A988 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53332BBC26C1565300F3A988 /* ViewController.swift */; };
 		53332BC026C1565300F3A988 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53332BBE26C1565300F3A988 /* Main.storyboard */; };
 		53332BC226C1565500F3A988 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53332BC126C1565500F3A988 /* Assets.xcassets */; };
 		53332BC526C1565500F3A988 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53332BC326C1565500F3A988 /* LaunchScreen.storyboard */; };
+		53332BD226C1571300F3A988 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53332BD126C1571300F3A988 /* LoginController.swift */; };
+		53332BD426C15AFA00F3A988 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53332BD326C15AFA00F3A988 /* Extensions.swift */; };
+		53332BD626C17DA600F3A988 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53332BD526C17DA600F3A988 /* SignUpController.swift */; };
+		53332BD826C1851900F3A988 /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53332BD726C1851900F3A988 /* AuthButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		53332BB526C1565300F3A988 /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53332BB826C1565300F3A988 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53332BBA26C1565300F3A988 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		53332BBC26C1565300F3A988 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		53332BBF26C1565300F3A988 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		53332BC126C1565500F3A988 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		53332BC426C1565500F3A988 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		53332BC626C1565500F3A988 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		53332BD126C1571300F3A988 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		53332BD326C15AFA00F3A988 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		53332BD526C17DA600F3A988 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		53332BD726C1851900F3A988 /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,58 @@
 		53332BB726C1565300F3A988 /* UberClone */ = {
 			isa = PBXGroup;
 			children = (
+				53332BCC26C1568600F3A988 /* Model */,
+				53332BCD26C1568B00F3A988 /* View */,
+				53332BCE26C1569000F3A988 /* Controller */,
+				53332BCF26C1569500F3A988 /* Services */,
+				53332BD026C1569B00F3A988 /* Utils */,
 				53332BB826C1565300F3A988 /* AppDelegate.swift */,
 				53332BBA26C1565300F3A988 /* SceneDelegate.swift */,
-				53332BBC26C1565300F3A988 /* ViewController.swift */,
 				53332BBE26C1565300F3A988 /* Main.storyboard */,
 				53332BC126C1565500F3A988 /* Assets.xcassets */,
 				53332BC326C1565500F3A988 /* LaunchScreen.storyboard */,
 				53332BC626C1565500F3A988 /* Info.plist */,
 			);
 			path = UberClone;
+			sourceTree = "<group>";
+		};
+		53332BCC26C1568600F3A988 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		53332BCD26C1568B00F3A988 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				53332BD726C1851900F3A988 /* AuthButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		53332BCE26C1569000F3A988 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				53332BD126C1571300F3A988 /* LoginController.swift */,
+				53332BD526C17DA600F3A988 /* SignUpController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		53332BCF26C1569500F3A988 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		53332BD026C1569B00F3A988 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				53332BD326C15AFA00F3A988 /* Extensions.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,9 +186,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53332BBD26C1565300F3A988 /* ViewController.swift in Sources */,
 				53332BB926C1565300F3A988 /* AppDelegate.swift in Sources */,
+				53332BD826C1851900F3A988 /* AuthButton.swift in Sources */,
+				53332BD226C1571300F3A988 /* LoginController.swift in Sources */,
 				53332BBB26C1565300F3A988 /* SceneDelegate.swift in Sources */,
+				53332BD626C17DA600F3A988 /* SignUpController.swift in Sources */,
+				53332BD426C15AFA00F3A988 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,7 +348,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.svi.UberClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -315,7 +367,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.svi.UberClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
