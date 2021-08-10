@@ -15,7 +15,7 @@ import MapKit
 class HomeController: UIViewController {
     
     //MARK: - Properties
-    
+    private let locationManager = CLLocationManager()
     private let mapView = MKMapView()
     
     //MARK: - Lifecycle
@@ -23,6 +23,7 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         checkIfUserLoggenIn()
+        locationManager.delegate = self
 //        signOut()
     }
     
@@ -39,6 +40,7 @@ class HomeController: UIViewController {
         } else {
             // logged in
             configureUI()
+            locationManagerDidChangeAuthorization(locationManager)
         }
     }
     
@@ -54,7 +56,47 @@ class HomeController: UIViewController {
     // MARK: - Helper functions
     
     func configureUI() {
+        configureMapView()
+    }
+    
+    func configureMapView() {
         view.addSubview(mapView)
         mapView.frame = view.bounds
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = .follow
     }
+}
+
+// MARK: - Location Services
+
+extension HomeController: CLLocationManagerDelegate {
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+        
+        case .notDetermined:
+            print("notDetermined")
+            locationManager.requestWhenInUseAuthorization()
+            
+        case .restricted, .denied: print("restricted")
+            
+        case .authorizedAlways:
+            print("authorizedAlways")
+            locationManager.startUpdatingLocation()
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            
+        case .authorizedWhenInUse:
+            print("authorizedWhenInUse")
+            locationManager.requestAlwaysAuthorization()
+            
+        @unknown default:
+            print("unknown default")
+        }
+        
+        if manager.authorizationStatus == .authorizedWhenInUse {
+            locationManager.requestAlwaysAuthorization()
+        }
+    }
+    
+    
 }

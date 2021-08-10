@@ -53,6 +53,12 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Please allow access your location so we can find your riders</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Please allow access your location so we can find your riders</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Please allow access your location so we can find your riders</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
