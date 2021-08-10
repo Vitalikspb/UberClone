@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class SignUpController: UIViewController {
     
@@ -65,6 +67,7 @@ class SignUpController: UIViewController {
         let button = AuthButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
         return button
     }()
     
@@ -98,6 +101,33 @@ class SignUpController: UIViewController {
     
     @objc func handleShowLogin() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func handleSignUp() {
+        guard let email = emailTextField.text,
+              let password = passwordTextField.text,
+              let fullname = fullnameTextField.text else { return }
+        let accountTypeIndex = accountTypeSegmentedControl.selectedSegmentIndex
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            if let error = error {
+                print("failed with error: \(error.localizedDescription)")
+                return
+            }
+            guard let uid = result?.user.uid else { return }
+            let values = ["email": email,
+                          "fullname": fullname,
+                          "accountType": accountTypeIndex] as [String : Any]
+            
+            Database.database().reference().child("users").child(uid).updateChildValues(values) { error, ref in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                guard let controller = UIApplication.shared.windows.first(where: { $0.isKeyWindow })!.rootViewController as? HomeController else { return }
+                controller.configureUI()
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        print("!!!!!!!")
     }
     
     // MARK: - Helpers
