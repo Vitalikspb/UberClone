@@ -8,5 +8,6 @@ target 'UberClone' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
+  pod 'GeoFire', '~> 4.0'
 
 end
