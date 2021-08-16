@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 extension UIView {
     
@@ -130,6 +131,18 @@ extension UIColor {
     
     static let backgroundColor = UIColor.rgb(red: 25, green: 25, blue: 25)
     static let mainBlue = UIColor.rgb(red: 17, green: 154, blue: 237)
+}
+
+extension MKPlacemark {
+    var address: String? {
+        get {
+            guard let subThoroughfare = subThoroughfare,
+                  let thoroughfare = thoroughfare,
+                  let locality = locality,
+                  let adminArea = administrativeArea else { return nil }
+            return "\(subThoroughfare) \(thoroughfare), \(locality), \(adminArea)"
+        }
+    }
 }
 
 

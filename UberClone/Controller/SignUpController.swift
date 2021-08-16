@@ -142,7 +142,7 @@ class SignUpController: UIViewController {
                 print(error.localizedDescription)
             }
             guard let controller = UIApplication.shared.windows.first(where: { $0.isKeyWindow })!.rootViewController as? HomeController else { return }
-            controller.configureUI()
+            controller.configure()
             self.dismiss(animated: true, completion: nil)
         }
     }

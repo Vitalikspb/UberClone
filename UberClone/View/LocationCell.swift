@@ -6,22 +6,28 @@
 //
 
 import UIKit
+import MapKit
 
 class LocationCell: UITableViewCell {
 
     // MARK: - Properties
     static let identifier = "LocationCell"
     
+    var placeMark: MKPlacemark? {
+        didSet {
+            titleLabel.text = placeMark?.name
+            addressLabel.text = placeMark?.address
+        }
+    }
+    
     private let titleLabel: UILabel = {
        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.text = "123 Main street"
         return label
     }()
     private let addressLabel: UILabel = {
        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.text = "123 Main street, Washington, DC"
         label.textColor = .lightGray
         return label
     }()
