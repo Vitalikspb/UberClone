@@ -35,10 +35,12 @@ class HomeController: UIViewController, CLLocationManagerDelegate {
     
     private let mapView = MKMapView()
     private let inputActivationView = LocationInputActivationView()
+    private let rideActionView = RideActionView()
     private let locationInputView = LocationInputView()
     private let tableView = UITableView()
     private var searchResults = [MKPlacemark]()
     private let locationInputViewHeight: CGFloat = 200
+    private let rideActionViewRide: CGFloat = 300
     private var actionButtonConfig = ActionButtonConfiguration()
     private var route: MKRoute?
     
@@ -77,6 +79,7 @@ class HomeController: UIViewController, CLLocationManagerDelegate {
             UIView.animate(withDuration: 0.3) {
                 self.inputActivationView.alpha = 1
                 self.configureFunctionButton(config: .showMenu)
+                self.animateRideActionView(shouldShow: false)
             }
         }
     }
@@ -143,6 +146,19 @@ class HomeController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Helper functions
     
+    func animateRideActionView(shouldShow: Bool, destination: MKPlacemark? = nil) {
+        let yOrigin = shouldShow ? self.view.frame.height - self.rideActionViewRide : self.view.frame.height
+        
+        if shouldShow {
+            guard let destination = destination else { return }
+            rideActionView.destination = destination
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.rideActionView.frame.origin.y = yOrigin
+        }
+    }
+    
     fileprivate func configureFunctionButton(config: ActionButtonConfiguration) {
         switch config {
         case .showMenu:
@@ -171,6 +187,7 @@ class HomeController: UIViewController, CLLocationManagerDelegate {
     
     func configureUI() {
         configureMapView()
+        configureRideActionView()
         
         view.addSubview(actionButton)
         actionButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor,
@@ -189,6 +206,12 @@ class HomeController: UIViewController, CLLocationManagerDelegate {
             self.inputActivationView.alpha = 1
         }
         configureTableView()
+    }
+    
+    func configureRideActionView() {
+        view.addSubview(rideActionView)
+        rideActionView.frame = CGRect(x: 0, y: view.frame.height,
+                                      width: view.frame.width, height: rideActionViewRide)
     }
     
     func configureMapView() {
@@ -371,8 +394,9 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
             self.mapView.selectAnnotation(annotation, animated: true)
             
             let annotations = self.mapView.annotations.filter({ !$0.isKind(of: DriverAnnotation.self) })
+            self.mapView.zoomToFit(annotations: annotations)
             
-            self.mapView.showAnnotations(annotations, animated: true)
+            self.animateRideActionView(shouldShow: true, destination: selectedPlacemark)
         }
 
     }
